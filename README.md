@@ -40,7 +40,7 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
-          sqlfluff_version: "1.4.5"
+          sqlfluff_version: "2.0.7"
           sqlfluff_command: "fix" # Or "lint"
           config: "${{ github.workspace }}/.sqlfluff"
           paths: '${{ github.workspace }}/models'
@@ -51,19 +51,12 @@ jobs:
           echo '${{ steps.lint-sql.outputs.sqlfluff-results-rdjson }}' | jq -r '.'
 ```
 
+## Supported versions of sqlfluff
+We tested the action with the following versions of sqlfluff.
+We don't recommend to use the sqlfluff version less than 1.4.5, because those don't support dbt-core 1.4 or later.
 
-## NOTE
-The tested sqlfluff versions in the repositories are:
-- 1.0.0
-- 1.1.0
-- 1.2.0
-- 1.3.0
-- 1.4.5
+- 2.0.7
 
-## CAUTION
-Because dbt-core==1.4 changes the implementation of custom exceptions like `CompilationException`, sqlfluff 1.4.5 or less doesn't work with dbt-core 1.4 or later.
-So, we have to use dbt-core 1.3 or less until the subsequent change is released.
-- [Handle renamed dbt exceptions by greg\-finley · Pull Request \#4317 · sqlfluff/sqlfluff](https://github.com/sqlfluff/sqlfluff/pull/4317)
 
 ## Input
 
@@ -101,13 +94,13 @@ inputs:
   reviewdog_version:
     description: 'reviewdog version'
     required: false
-    default: '0.13.0'
+    default: '0.14.1'
   ### Flags for sqlfluff ###
   sqlfluff_version:
     description: |
       sqlfluff version. Use the latest version if not set.
     required: false
-    default: '1.4.5'
+    default: '2.0.7'
   sqlfluff_command:
     description: 'The sub command of sqlfluff. One of lint and fix'
     required: false
@@ -240,3 +233,45 @@ This repository uses [reviewdog/action-depup](https://github.com/reviewdog/actio
 reviewdog version.
 
 ![reviewdog depup demo](https://user-images.githubusercontent.com/3797062/73154254-170e7500-411a-11ea-8211-912e9de7c936.png)
+
+## Contributors
+<!-- readme: contributors -start -->
+<table>
+<tr>
+    <td align="center">
+        <a href="https://github.com/yu-iskw">
+            <img src="https://avatars.githubusercontent.com/u/1523515?v=4" width="100;" alt="yu-iskw"/>
+            <br />
+            <sub><b>Yu Ishikawa</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/vgw-chriskruger">
+            <img src="https://avatars.githubusercontent.com/u/118869997?v=4" width="100;" alt="vgw-chriskruger"/>
+            <br />
+            <sub><b>Chris Kruger</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/onesuper">
+            <img src="https://avatars.githubusercontent.com/u/977633?v=4" width="100;" alt="onesuper"/>
+            <br />
+            <sub><b>Dreamsome</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/snyk-bot">
+            <img src="https://avatars.githubusercontent.com/u/19733683?v=4" width="100;" alt="snyk-bot"/>
+            <br />
+            <sub><b>Snyk Bot</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/kieronellis">
+            <img src="https://avatars.githubusercontent.com/u/69465049?v=4" width="100;" alt="kieronellis"/>
+            <br />
+            <sub><b>Null</b></sub>
+        </a>
+    </td></tr>
+</table>
+<!-- readme: contributors -end -->
