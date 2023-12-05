@@ -125,6 +125,10 @@ if [[ "${SQLFLUFF_COMMAND:?}" == "lint" ]]; then
   cat "$lint_results"
   echo "echo and cat lint_results_rdjson end"
 
+  echo "echo reviewdog version start"
+  reviewdog --version
+  echo "echo reviewdog version end"
+
   cat <"$lint_results_rdjson" |
     reviewdog -f=rdjson \
       -name="sqlfluff-lint" \
