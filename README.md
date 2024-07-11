@@ -101,7 +101,7 @@ inputs:
   reviewdog_version:
     description: 'reviewdog version'
     required: false
-    default: '0.13.0'
+    default: '0.20.0'
   ### Flags for sqlfluff ###
   sqlfluff_version:
     description: |
